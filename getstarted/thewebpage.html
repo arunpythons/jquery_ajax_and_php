@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        https://www.cluemediator.com/ajax-post-request-with-jquery-and-php
+
+
+        https://www.cluemediator.com/ajax-post-request-with-jquery-and-php
+     -->
+</head>
+<body>
+    <form action="#" method="post">
+        <table border="1">
+            <tr>
+                <td>First name</td>
+                <td><input type="text" name="usen_fname" id="ufnme" required></td>
+            </tr>
+            <tr>
+                <td>Last name</td>
+                <td><input type="text" name="usen_lname" id="ulnme" required></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="user_email" id="ueml" required></td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td><textarea name="usr_message" id="umsg" cols="30" rows="10" required></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="Send" id="submit"></td>
+            </tr>
+        </table>
+    </form>
+    <p id="dxn">010101</p>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#submit').click(function(){
+                var f_name = $('#ufnme').val();
+                var l_name = $('#ulnme').val();
+                var u_email = $('#ueml').val();
+                var u_message = $('#umsg').val();
+
+                $.ajax({
+                type:'POST',
+                url:'thepage.php',
+                data:{
+                    fname: f_name,
+                    lname: l_name,
+                    uemail: u_email,
+                    umessage: u_message
+                },cache: false,
+                success: function(data) {
+                    // alert(data);
+                    $('#dxn').text(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr);
+                }
+            });
+            });
+            
+        });
+    </script>
+</body>
+</html>
