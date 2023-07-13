@@ -23,12 +23,12 @@ if($rst->num_rows>0){
     }
 }
 
-if($cont->query($useraddobj) === TRUE){
+if($cont->query($useselectobj) === TRUE){
     echo json_encode($data);
     exit;
 }
 else{
-    echo "Data could not save try again";
+    echo "Data could not retreve";
 }
 $cont->close();
 ?>

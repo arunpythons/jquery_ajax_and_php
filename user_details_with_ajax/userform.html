@@ -70,8 +70,8 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
-        
-        var uid = $('#inputUserid').val();
+            var theuser = '';
+            var uid = $('#inputUserid').val();
             var unm = $('#inputUser').val();
             var eml = $('#inputEmail').val();
             var psw = $('#inputPassword').val();
@@ -79,16 +79,17 @@
             $.ajax({
                 type: 'POST',
                 url: 'user.php',
-                data: theuser={
-                    user_id : uid,
-                    user_nme:unm,
-                    user_email:eml,
-                    user_password:psw
-                },
+                dataType:'html',
+                // data: {
+                //     user_id : uid,
+                //     user_nme:unm,
+                //     user_email:eml,
+                //     user_password:psw
+                // },
                 cache: false,
-                success:function(){
-                    // alert(theuser);
-                    $('#demos').text(theuser.user_id);
+                success:function(data){
+                    
+                    $('#demos').text(data);
                 },
                 error:function(xhr, status, error){
                     console.error(xhr);
