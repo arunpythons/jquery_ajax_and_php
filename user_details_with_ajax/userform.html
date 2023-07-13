@@ -21,18 +21,18 @@
                         <h1>User Information</h1>
                         <form id="user-form" method="post">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Username</label>
+                                <label for="inputUser" class="form-label">Username</label>
                                 <input type="hidden" class="form-control" id="inputUserid" aria-describedby="emailHelp" name="ajuserid">
                                 <input type="text" class="form-control" id="inputUser" aria-describedby="emailHelp" name="ajusername">
                                 <div id="userHelp" class="form-text">We need a name to know about you.</div>
                               </div>
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
+                              <label for="inputEmail" class="form-label">Email address</label>
                               <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="ajuser_email">
                               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Password</label>
+                              <label for="inputPassword" class="form-label">Password</label>
                               <input type="password" class="form-control" id="inputPassword" name="ajuserps">
                               <div id="passwordHelp" class="form-text">Add a password that is strong enough.</div>
                             </div>
@@ -44,23 +44,18 @@
                     <h1>The User Data</h1>
                     <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum mollitia expedita adipisicing elit. Rerum mollitia expedita</span>
                     <table class="table table-bordered table-responsive table-striped table-hover mt-1">
-                        <tr class="bg-dark text-white">
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>arun</td>
-                            <td>arun@ip.com</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>arun</td>
-                            <td>arun@ip.com</td>
-                        </tr>
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="demos">
+
+                        </tbody>
                     </table>
-                    <p id="demos">00</p>
+                    <!-- <p id="demos">00</p> -->
                 </div>
             </div>
         </div>
@@ -86,10 +81,14 @@
                 //     user_email:eml,
                 //     user_password:psw
                 // },
+                
                 cache: false,
-                success:function(data){
-                    
-                    $('#demos').text(data);
+                // to retreve data from database we dont need to use data... but we have to add dataType html and use it like gimen below
+                // _ _ _ .html(rspns);
+                success:function(rspns){
+                    var obj=jQuery.parse(rspns);
+                    console.log(rspns.user_id);
+                    $('#demos').html(rspns);
                 },
                 error:function(xhr, status, error){
                     console.error(xhr);
